@@ -39,14 +39,13 @@ export default function App() {
 
   return (
     <div className="App">
-      < Welcome 
+      {!gameStarted && < Welcome 
       difficulty={difficulty}
       setDifficulty={setDifficulty}
       gameType={gameType}
       setGameType={setGameType}
       startQuiz={startQuiz}
-      gameStarted={gameStarted}
-      />
+      />}
     </div>
   );
 }

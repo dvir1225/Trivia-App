@@ -2,7 +2,6 @@ import React from "react";
 import "./Welcome.css"
 
 export default function Welcome(props) {
-    if(!props.gameStarted){
     return(
         <div className="welcome">
             <h1 className="welcome--title">Quizzical</h1>
@@ -34,5 +33,5 @@ export default function Welcome(props) {
                 >Start Quiz</button>
             </form>
         </div>
-    )}
+    )
 }
