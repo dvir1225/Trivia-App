@@ -1,10 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Karla:wght@300;400;600;700&display=swap');
 
 .App {
+  position: relative;
   display: flex;
   width: 550px;
   height: 800px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.greenBlob {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.yellowBlob {
+  position: absolute;
+  top: 0;
+  right: 0;
 }

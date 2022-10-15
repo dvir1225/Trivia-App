@@ -19,6 +19,10 @@
     font-size: 30px;
 }
 
+.welcome--subtitle {
+    margin-bottom: 50px;
+}
+
 .welcome--subtitle,
 select,
 button {
