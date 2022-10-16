@@ -8,7 +8,8 @@ export default function Welcome(props) {
             <span className="welcome--subtitle">Choose your game preferences</span>
             <form className="welcome--form">
                 <div className="welcome--selections">
-                    <select 
+                    <select
+                    className="welcome--select" 
                     value={props.difficulty}
                     onChange={(e) => props.setDifficulty(e.target.value)}
                     >
@@ -19,6 +20,7 @@ export default function Welcome(props) {
                         <option value="hard">Hard</option>
                     </select>
                     <select
+                    className="welcome--select" 
                     value={props.gameType}
                     onChange={(e) => props.setGameType(e.target.value)}>
                         <option value="select-type">Select Quiz Type</option>

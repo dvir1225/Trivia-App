@@ -3,13 +3,30 @@ import './App.css';
 import Welcome from './components/Welcome'
 import greenBlob from './green-blob.svg'
 import yellowBlob from './yellow-blob.svg'
+import Question from './components/Question'
+import Quiz from './components/Quiz'
 
 export default function App() {
   const [gameStarted, setGameStarted] = React.useState(false)
   const [difficulty, setDifficulty] = React.useState('select-difficulty')
   const [gameType, setGameType] = React.useState('select-type')
-  const [questions, setQuestions] = React.useState([])
+  const [questions, setQuestions] = React.useState(createEmptyQuestions())
 
+  function createEmptyQuestions(){
+    let emptyQuestions = []
+    for (let i = 0; i<10; i++){
+      emptyQuestions.push({
+        category: '',
+        correct_answer: '',
+        difficulty: '',
+        incorrect_answers: ['', '', ''],
+        question: '',
+        type: ''
+      })
+      return emptyQuestions;
+    }
+  }
+  
   function getQuestions(url){
     fetch(url)
         .then(res => res.json())
@@ -33,10 +50,18 @@ export default function App() {
       getQuestions(`https://opentdb.com/api.php?amount=10&difficulty=${difficulty}&type=${gameType}`)
     }
   }
-  
+  // const questionsComponent = questions.map((question, index) => {
+  //   return(
+  //     < Question 
+  //     question={questions[index]}
+  //     key={index} 
+  //     />
+  //   )
+  // })
+
   return (
     <div className="App">
-      <img className="yellowBlob" src={yellowBlob} alt="" />
+      {/* <img className="yellowBlob" src={yellowBlob} alt="" /> */}
       {!gameStarted && < Welcome 
       difficulty={difficulty}
       setDifficulty={setDifficulty}
@@ -44,7 +69,8 @@ export default function App() {
       setGameType={setGameType}
       startQuiz={startQuiz}
       />}
-      <img className="greenBlob" src={greenBlob} alt="" />
+      {gameStarted && <Quiz questions={questions} />}
+      {/* <img className="greenBlob" src={greenBlob} alt="" /> */}
     </div>
   );
 }
