@@ -37,7 +37,7 @@ export default function App() {
     e.preventDefault();
     setGameStarted(true)
     if(difficulty === 'select-difficulty' || gameType === 'select-type'){
-      console.log('Please choose quiz settings')
+      alert('Please choose quiz settings')
       setGameStarted(false)
     } else if (difficulty === "Any Difficulty" && gameType === "Any Type") {
       getQuestions('https://opentdb.com/api.php?amount=10')
@@ -60,7 +60,15 @@ export default function App() {
       setGameType={setGameType}
       startQuiz={startQuiz}
       />}
-      {gameStarted && <Quiz questions={questions} />}
+      {gameStarted && 
+      <Quiz 
+      questions={questions}
+      gameStarted={gameStarted}
+      setGameStarted={setGameStarted}
+      setDifficulty={setDifficulty}
+      setGameType={setGameType}
+      setQuestions={setQuestions}
+      createEmptyQuestions={createEmptyQuestions} />}
       {/* <img className="greenBlob" src={greenBlob} alt="" /> */}
     </div>
   );

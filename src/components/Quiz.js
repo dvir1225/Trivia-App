@@ -16,7 +16,7 @@ export default function Quiz(props){
             })
         }
     }, [questionsArr])
-
+    console.log(correctAnswers)
     const questions = props.questions.map((question, index) => {
         return(
           < Question 
@@ -46,6 +46,20 @@ export default function Quiz(props){
         return `${result}/${questionsArr.length}`
     }
 
+    function restartGame(){
+        setGameFinished(false);
+        setCheckIfAnswered(prev => {
+            prev.forEach(answer => answer=false)
+        })
+        setCorrectAnswers(prev => {
+            prev.forEach(answer => answer=false)
+        })
+        props.setGameStarted(false)
+        props.setDifficulty('select-difficulty')
+        props.setGameType('select-type')
+        props.setQuestions(props.createEmptyQuestions())
+    }
+
     return(
         <div className="quiz">
             {props.questions[0].type==="" && 
@@ -56,11 +70,15 @@ export default function Quiz(props){
             <div className="quiz--questions">
                 {questions}
             </div>}
-            {props.questions[0].type!=='' && <button 
+            {!gameFinished && props.questions[0].type!=='' && <button 
             className='quiz--submit'
             onClick={finishGame}>
                 Check Answers</button>}
-            {gameFinished && <p>You scored {countCorrectAnswers()} correct answers!</p>}
+            {gameFinished && <span>You scored {countCorrectAnswers()} correct answers!</span>}
+            {gameFinished && <button
+            className="quiz--submit"
+            onClick={restartGame}>
+                Play Again</button>}
         </div>
     )
 }

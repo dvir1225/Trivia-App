@@ -52,6 +52,17 @@ export default function Question(props){
             >{answer}</button>
         )}
     )
+
+    React.useEffect(() => {
+        if(props.gameFinished && selectedAnswer === correctAnswer){
+            props.setCorrectAnswers(prev => {
+                prev[props.index] = true;
+                return (
+                    [...prev]
+                )
+            })
+        }
+    }, [props.gameFinished])
     
     return (
         <div className="question">
