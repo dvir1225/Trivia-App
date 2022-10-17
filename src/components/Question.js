@@ -3,12 +3,18 @@ import './Question.css'
 
 export default function Question(props){
     const [selectedAnswer, setSelectedAnswer] = React.useState('')
-    
     const correctAnswer = props.question.correct_answer;
     const answers = props.question.incorrect_answers;
     const randomNum = Math.floor(Math.random()*4)
-    if(answers.length<4){
+
+    if(props.question.type==="multiple" && answers.length<4){
         answers.splice(randomNum, 0, correctAnswer)
+    }
+
+    if(props.question.type==="boolean" && answers.length<2){
+        if(correctAnswer==='True'){
+            answers.unshift(correctAnswer)
+        } else answers.push(correctAnswer)
     }
 
     function handleClick(e){
