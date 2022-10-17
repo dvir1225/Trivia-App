@@ -1,5 +1,6 @@
 .question {
     width: 70%;
+    height: 100%;
     padding: 20px;
     margin: auto;
     border-bottom: 1px solid #DBDEF0;
@@ -17,12 +18,11 @@
     margin-bottom: 13px;
 }
 
+
 .question--answer {
-    color: #293264;
     font-family: "Inter", sans-serif;
     font-size: 10px;
     font-weight: 500;
-    border: 1px solid #4D5B9E;
     border-radius: 8px;
     height: 20px;
     min-width: 65px;
@@ -30,4 +30,29 @@
     margin-bottom: 13px;
     line-height: 12px;
     cursor: pointer;
+}
+
+.selected-answer {
+    border: none;
+    background-color: #D6DBF5;
+}
+
+.question--answer {
+    color: #293264;
+    border: 1px solid #4D5B9E;
+}
+
+.correct-answer {
+    background-color: #94d7a2;
+    border: none;
+}
+
+.incorrect-answer {
+    background-color: rgba(248, 188, 188, 0.5);
+    color: rgba(41, 50, 100, 0.5);
+}
+
+.unselected-answer {
+    color: rgba(41, 50, 100, 0.5);
+    border: 1px solid rgba(77, 91, 158, 0.5);
 }

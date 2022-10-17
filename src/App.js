@@ -3,7 +3,6 @@ import './App.css';
 import Welcome from './components/Welcome'
 import greenBlob from './green-blob.svg'
 import yellowBlob from './yellow-blob.svg'
-import Question from './components/Question'
 import Quiz from './components/Quiz'
 
 export default function App() {
@@ -50,14 +49,6 @@ export default function App() {
       getQuestions(`https://opentdb.com/api.php?amount=10&difficulty=${difficulty}&type=${gameType}`)
     }
   }
-  // const questionsComponent = questions.map((question, index) => {
-  //   return(
-  //     < Question 
-  //     question={questions[index]}
-  //     key={index} 
-  //     />
-  //   )
-  // })
 
   return (
     <div className="App">
