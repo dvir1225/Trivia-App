@@ -50,6 +50,7 @@ export default function Question(props){
             key={answer}
             className={setAnswerClass(answer)}
             onClick={handleClick}
+            disabled={props.gameFinished}
             >{decode(answer)}</button>
         )}
     )
