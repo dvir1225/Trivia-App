@@ -1,5 +1,6 @@
 import React from "react"
 import './Question.css'
+import {decode} from 'html-entities';
 
 export default function Question(props){
     const [selectedAnswer, setSelectedAnswer] = React.useState('')
@@ -49,7 +50,7 @@ export default function Question(props){
             key={answer}
             className={setAnswerClass(answer)}
             onClick={handleClick}
-            >{answer}</button>
+            >{decode(answer)}</button>
         )}
     )
 
@@ -66,7 +67,7 @@ export default function Question(props){
     
     return (
         <div className="question">
-            <h2 className="question--title">{props.question.question}</h2>
+            <h2 className="question--title">{decode(props.question.question)}</h2>
             <div className="question--answers">
                 {answerBtns}
             </div>
