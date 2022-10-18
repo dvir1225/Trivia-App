@@ -8,19 +8,17 @@ import Quiz from './components/Quiz'
 export default function App() {
   const [gameStarted, setGameStarted] = React.useState(false)
   const [difficulty, setDifficulty] = React.useState('select-difficulty')
-  const [gameType, setGameType] = React.useState('select-type')
   const [questions, setQuestions] = React.useState(createEmptyQuestions())
 
-  function createEmptyQuestions(){
+    function createEmptyQuestions(){
     let emptyQuestions = []
     for (let i = 0; i<10; i++){
       emptyQuestions.push({
         category: '',
-        correct_answer: '',
+        correctAnswer: '',
         difficulty: '',
-        incorrect_answers: ['', '', ''],
+        incorrectAnswers: ['', '', ''],
         question: '',
-        type: ''
       })
       return emptyQuestions;
     }
@@ -30,23 +28,17 @@ export default function App() {
     fetch(url)
         .then(res => res.json())
         .then(data => {
-          setQuestions(() => data.results)})
+          setQuestions(data)
+          setGameStarted(true)
+        })
   }
 
   function startQuiz(e){
     e.preventDefault();
-    setGameStarted(true)
-    if(difficulty === 'select-difficulty' || gameType === 'select-type'){
-      alert('Please choose quiz settings')
-      setGameStarted(false)
-    } else if (difficulty === "Any Difficulty" && gameType === "Any Type") {
-      getQuestions('https://opentdb.com/api.php?amount=10')
-    } else if (difficulty !== "Any Difficulty" && gameType === "Any Type"){
-      getQuestions(`https://opentdb.com/api.php?amount=10&difficulty=${difficulty}`)
-    } else if (difficulty === "Any Difficulty" && gameType !== "Any Type"){
-      getQuestions(`https://opentdb.com/api.php?amount=10&type=${gameType}`)
+    if(difficulty === 'select-difficulty'){
+      alert('Please select quiz difficulty')
     } else {
-      getQuestions(`https://opentdb.com/api.php?amount=10&difficulty=${difficulty}&type=${gameType}`)
+      getQuestions(`https://the-trivia-api.com/api/questions?limit=10&region=IL&difficulty=${difficulty}`)
     }
   }
 
@@ -56,17 +48,14 @@ export default function App() {
       {!gameStarted && < Welcome 
       difficulty={difficulty}
       setDifficulty={setDifficulty}
-      gameType={gameType}
-      setGameType={setGameType}
       startQuiz={startQuiz}
       />}
-      {gameStarted && 
+      {gameStarted &&
       <Quiz 
       questions={questions}
       gameStarted={gameStarted}
       setGameStarted={setGameStarted}
       setDifficulty={setDifficulty}
-      setGameType={setGameType}
       setQuestions={setQuestions}
       createEmptyQuestions={createEmptyQuestions} />}
       {/* <img className="greenBlob" src={greenBlob} alt="" /> */}

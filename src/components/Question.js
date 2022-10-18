@@ -4,18 +4,12 @@ import {decode} from 'html-entities';
 
 export default function Question(props){
     const [selectedAnswer, setSelectedAnswer] = React.useState('')
-    const correctAnswer = props.question.correct_answer;
-    const answers = props.question.incorrect_answers;
+    const correctAnswer = props.question.correctAnswer;
+    const answers = props.question.incorrectAnswers;
     const randomNum = Math.floor(Math.random()*4)
 
-    if(props.question.type==="multiple" && answers.length<4){
+    if(props.question.correctAnswer!== "" && answers.length<4){
         answers.splice(randomNum, 0, correctAnswer)
-    }
-
-    if(props.question.type==="boolean" && answers.length<2){
-        if(correctAnswer==='True'){
-            answers.unshift(correctAnswer)
-        } else answers.push(correctAnswer)
     }
 
     function handleClick(e){
@@ -43,7 +37,7 @@ export default function Question(props){
             } else return "question--answer unselected-answer"
         }
     }
-
+    
     const answerBtns = answers.map(answer => {
         return (
             <button 
@@ -65,7 +59,6 @@ export default function Question(props){
             })
         }
     }, [props.gameFinished])
-    
     return (
         <div className="question">
             <h2 className="question--title">{decode(props.question.question)}</h2>

@@ -14,12 +14,11 @@ export default function Welcome(props) {
                     onChange={(e) => props.setDifficulty(e.target.value)}
                     >
                         <option value="select-difficulty">Select Difficulty</option>
-                        <option value="Any Difficulty">Any Difficulty</option>
                         <option value="easy">Easy</option>
                         <option value="medium">Medium</option>
                         <option value="hard">Hard</option>
                     </select>
-                    <select
+                    {/* <select
                     className="welcome--select" 
                     value={props.gameType}
                     onChange={(e) => props.setGameType(e.target.value)}>
@@ -27,7 +26,7 @@ export default function Welcome(props) {
                         <option value="Any Type">Any Type</option>
                         <option value="multiple">Multiple Choice</option>
                         <option value="boolean">True / False</option>
-                    </select>
+                    </select> */}
                 </div>
                 <button 
                     className="welcome--submit"
